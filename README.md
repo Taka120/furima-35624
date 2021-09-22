@@ -15,6 +15,7 @@
 
 ### Association
 has_many :items
+has_many :purchases
 
 ## itemsテーブル
 
@@ -28,12 +29,11 @@ has_many :items
 | area_id         | integer    | null: false                    |
 | days_to_ship_id | integer    | null: false                    |
 | item_price      | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
 has_one :purchase
-has_one :address
 
 ## purchasesテーブル
 
@@ -43,7 +43,7 @@ has_one :address
 | item   | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :purchase
+belongs_to :user
 has_one :address
 belongs_to :item
 
@@ -52,12 +52,12 @@ belongs_to :item
 | Column           | Type        | Options                        |
 | ---------------- | ----------- | ------------------------------ |
 | postal_number    | string      | null: false                    |
-| prefectures      | integer     | null: false                    |
+| prefecture_id    | integer     | null: false                    |
 | municipalities   | string      | null: false                    |
 | address          | string      | null: false                    |
 | building_name    | string      |                                |
 | telephone_number | string      | null: false                    |
-| purchase_id      | references  | null: false, foreign_key: true |
+| purchase         | references  | null: false, foreign_key: true |
 
 ### Association
 belongs_to :purchase
