@@ -1,24 +1,61 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type     | Options     |
+| ------------------ | -------- | ----------- |
+| nickname           | string   | null: false |
+| email              | string   | null: false |
+| encrypted_password | string   | null: false |
+| first_name         | string   | null: false |
+| last_name          | string   | null: false |
+| first_name_reading | string   | null: false |
+| last_name_reading  | string   | null: false |
+| birthday           | datetime | null: false |
 
-* Ruby version
+### Association
+has_many :items
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| item_name    | text    | null: false |
+| explanation  | text    | null: false |
+| category     | integer | null: false |
+| status       | integer | null: false |
+| delivery_fee | integer | null: false |
+| area         | integer | null: false |
+| days_to_ship | integer | null: false |
+| item_price   | integer | null: false |
 
-* Database creation
+### Association
+belongs_to :users
+has_one :purchases
+has_one :addresses
 
-* Database initialization
+## purchasesテーブル
 
-* How to run the test suite
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+belongs_to :purchases
+has_one :addresses
 
-* Deployment instructions
+## addressesテーブル
 
-* ...
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| postal_number    | integer | null: false |
+| prefectures      | integer | null: false |
+| municipalities   | string  | null: false |
+| address          | string  | null: false |
+| building_name    | string  |             |
+| telephone_number | integer | null: false |
+
+### Association
+belongs_to :items
+belongs_to :purchases
