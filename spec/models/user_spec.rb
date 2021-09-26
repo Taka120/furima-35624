@@ -74,8 +74,9 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Password is invalid"
      end
 
-     it 'passwordとpassword_password_confirmationが一致していないと登録できない' do
-      @user.password_confirmation = ''
+     it 'passwordとpassword_confirmationが一致していないと登録できない' do
+      @user.password = 't12345'
+      @user.password_confirmation = '12345t'
       @user.valid?
       expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
      end
@@ -132,7 +133,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "First name reading is invalid"
      end
 
-     it 'berthdayが空だと登録できない' do
+     it 'birthdayが空だと登録できない' do
       @user.birthday = ''
       @user.valid?
       expect(@user.errors.full_messages).to include "Birthday can't be blank"
