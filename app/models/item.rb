@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :delivery_fee
   belongs_to :area
-  belongs_to :DaysToShip
+  belongs_to :days_to_ship
   belongs_to :user
   has_one_attached :image
 

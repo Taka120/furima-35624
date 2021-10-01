@@ -26,31 +26,31 @@ RSpec.describe Item, type: :model do
      end
    
      it 'category_idが空では出品できない' do
-       @item.category_id = ''
+       @item.category_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include "Category can't be blank"
      end
   
      it 'status_idが空では出品できない' do
-       @item.status_id = ''
+       @item.status_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include "Status can't be blank"
      end
 
      it 'delivery_fee_idが空では出品できない' do
-       @item.delivery_fee_id = ''
+       @item.delivery_fee_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include "Delivery fee can't be blank"
      end
 
      it 'area_idが空では出品できない' do
-       @item.area_id = ''
+       @item.area_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include "Area can't be blank"
      end
 
      it 'days_to_ship_idが空では出品できない' do
-       @item.days_to_ship_id = ''
+       @item.days_to_ship_id = 1
        @item.valid?
        expect(@item.errors.full_messages).to include "Days to ship can't be blank"
      end
@@ -80,13 +80,13 @@ RSpec.describe Item, type: :model do
      end
 
      it 'item_priceが¥300~¥9,999,999の間でないと出品できない(低すぎる場合)' do
-       @item.item_price = '10'
+       @item.item_price = 10
        @item.valid?
        expect(@item.errors.full_messages).to include "Item price must be greater than or equal to 300"
      end
 
      it 'item_priceが¥300~¥9,999,999の間でないと出品できない(高すぎる場合)' do
-       @item.item_price = '10000000'
+       @item.item_price = 10000000
        @item.valid?
        expect(@item.errors.full_messages).to include "Item price must be less than or equal to 9999999"
      end
@@ -95,6 +95,12 @@ RSpec.describe Item, type: :model do
        @item.image = nil
        @item.valid?
        expect(@item.errors.full_messages).to include "Image can't be blank"
+     end
+
+     it 'userが紐付いてなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "User must exist"
      end
     end
   end
