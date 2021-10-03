@@ -117,8 +117,35 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
+    <%# ※以下のコメントアウトは,どの記述がどの機能を実装するものか分かりやすくする目的で記述してある %>
+    <%# 出品された商品が一覧で表示される %>
+    <% if @items[0] != nil %>
     <ul class='item-lists'>
-
+      <% @items.each do |item| %>
+       <li class='list'>
+        <%= link_to "#" do %>
+        <div class='item-image'>
+          <%= image_tag item.image, class: "item-img" %>
+        </div>
+        
+        <div class='item-detail'>
+          <h3 class='item-name'>
+            <%= item.item_name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.item_price %>円<br><%= item.delivery_fee.name %></span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+       </li>
+       <% end %>
+     <%# //出品された商品が一覧で表示される %>
+     <% else %>
+     <%# 出品された商品がない場合以下を表示する %>
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
@@ -161,7 +188,9 @@
         </div>
         <% end %>
       </li>
+      <%# //出品された商品がない場合上記を表示 %>
     </ul>
+    <% end %>
   </div>
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
