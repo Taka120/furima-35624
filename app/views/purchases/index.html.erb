@@ -29,6 +29,8 @@
         ¥<%= @item.item_price %>
       </p>
     </div>
+
+    <%= render 'shared/error_messages', model: @purchase_address %>
     <%# /支払額の表示 %>
     <%= form_with url: item_purchases_path, model: @purchase_address, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
