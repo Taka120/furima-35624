@@ -117,17 +117,24 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <%# ※以下のコメントアウトは,どの記述がどの機能を実装するものか分かりやすくする目的で記述してある %>
-    <%# 出品された商品が一覧で表示される %>
+    
     <ul class='item-lists'>
      <% if @items[0] != nil %>
        <% @items.each do |item| %>
          <li class='list'>
             <%= link_to item_path(item.id) do %>
-             <div class='item-image'>
+             <div class='item-img-content'>
                <%= image_tag item.image, class: "item-img" %>
-             </div>
-        
+
+               <% if item.purchase.present? %>
+                 <div class="sold-out">
+                   <span>Sold Out!!</span>
+                 </div>
+               <% end %>
+
+              </div>
+
+
              <div class='item-detail'>
                <h3 class='item-name'>
                  <%= item.item_name %>
@@ -143,9 +150,9 @@
            <% end %>
          </li>
         <% end %>
-       <%# //出品された商品が一覧で表示される %>
+       
       <% else %>
-       <%# 出品された商品がない場合以下を表示する %>
+       
        <li class='list'>
          <%= link_to '#' do %>
          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -163,7 +170,7 @@
          </div>
          <% end %>
        </li>
-       <%# //出品された商品がない場合上記を表示 %>
+       
       <% end %>
     </ul>
   </div>
