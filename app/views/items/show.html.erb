@@ -7,7 +7,6 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# ↓sold outの表示は購入機能実装後に実装するためコメントアウトしておきます %>
 
       <% if @item.purchase.present? %>
        <div class="sold-out">
@@ -15,7 +14,6 @@
        </div>
       <% end %>
 
-      <%# ↑sold outの表示は購入機能実装後に実装するためコメントアウトしておきます %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
