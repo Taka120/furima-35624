@@ -12,7 +12,7 @@ class PurchaseAddress
     validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "is invalid"}
     validates :token
   end
-  validate :building_name
+
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
