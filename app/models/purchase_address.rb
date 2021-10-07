@@ -10,6 +10,7 @@ class PurchaseAddress
     validates :municipalities
     validates :address
     validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "is invalid"}
+    validates :token
   end
   validate :building_name
 
